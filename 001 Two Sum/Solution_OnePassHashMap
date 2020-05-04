@@ -1,0 +1,22 @@
+import java.util.HashMap;
+public class OnePassHashMap {
+    public int[] twoSum(int[] nums, int target) {
+        //validity
+        if(nums == null || nums.length < 2) {
+            return null;
+        }
+        //Note>use cotainKey() method to avoid to traverse the HashMap
+        //so we could reduce the time complexity from n^2 to n
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for(int i = 0; i < nums.length; i++) {
+            int dif = target - nums[i];
+
+            if(hm.containsKey(dif)) {
+                return new int [] {i, hm.get(dif)};
+            }
+
+            hm.put(nums[i], i);
+        }
+        return new int [] {-1, -1};
+    }
+}
